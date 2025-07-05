@@ -1,12 +1,11 @@
-import './App.css'
-
-function App() {
-
-  return (
+import React from 'react';
+import './index.css'
+const App = () => {
+  return(
     <>
-      
+      Electrokart
     </>
   )
-}
+};
 
-export default App
+export default App;
