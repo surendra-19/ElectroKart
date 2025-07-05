@@ -1,10 +1,12 @@
 import React from 'react';
 import './index.css'
+import { Header } from './components/Header';
+
 const App = () => {
   return(
-    <>
-      Electrokart
-    </>
+    <div className='app-container'>
+      <Header/>
+    </div>
   )
 };
 
