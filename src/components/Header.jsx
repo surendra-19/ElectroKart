@@ -19,8 +19,8 @@ const Header = () => {
                 </button>
             </div>
             <div className="flex gap-15 items-center">
-                <MdOutlineShoppingCart size={30}/>
-                <IoPersonSharp size={25}/>
+                <MdOutlineShoppingCart className="cursor-pointer" size={30}/>
+                <IoPersonSharp className="cursor-pointer" size={25}/>
             </div>
         </header>
     )
