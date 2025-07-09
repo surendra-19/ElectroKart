@@ -6,6 +6,7 @@ const Slider = ({ productsList }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(true);
   const slideRef = useRef(null);
+  const autoSlideRef = useRef(null);
 
   const totalSlides = productsList.length;
   const extendedSlides = [productsList[totalSlides - 1], ...productsList, productsList[0]];
@@ -34,6 +35,14 @@ const Slider = ({ productsList }) => {
     }
   }, [currentIndex, totalSlides]);
 
+  useEffect(() => {
+  autoSlideRef.current = setInterval(() => {
+    nextSlide();
+  }, 2500);
+
+  return () => clearInterval(autoSlideRef.current);
+}, [])
+
   const nextSlide = () => {
     setCurrentIndex((prev) => prev + 1);
   };
@@ -41,12 +50,18 @@ const Slider = ({ productsList }) => {
   const prevSlide = () => {
     setCurrentIndex((prev) => prev - 1);
   };
+  const resetAutoSlide = () => {
+    clearInterval(autoSlideRef.current);
+    autoSlideRef.current = setInterval(() => {
+      nextSlide();
+    }, 3000);
+  };
 
   return (
     <div className="relative w-full overflow-hidden">
       <div
         ref={slideRef}
-        className={`flex ${isAnimating ? "transition-transform duration-500 ease-in-out" : ""}`}
+        className={`flex ${isAnimating ? "transition-transform duration-900 ease-in-out" : ""}`}
         style={{
           transform: `translateX(-${currentIndex * 100}%)`,
         }}
@@ -59,14 +74,20 @@ const Slider = ({ productsList }) => {
       </div>
 
       <button
-        onClick={prevSlide}
+        onClick={() => {
+          prevSlide();
+          resetAutoSlide();
+        }}
         className="absolute left-0 top-1/3 px-2 py-8.5 bg-white/30 backdrop-blur-md cursor-pointer hover:bg-white/40 transition"
       >
         <BiSolidLeftArrow size={20} />
       </button>
 
       <button
-        onClick={nextSlide}
+        onClick={() => {
+          nextSlide();
+          resetAutoSlide();
+        }}
         className="absolute right-0 top-1/3 px-2 py-8.5 bg-white/30 backdrop-blur-md cursor-pointer hover:bg-white/40 transition"
       >
         <BiSolidRightArrow size={20} />
