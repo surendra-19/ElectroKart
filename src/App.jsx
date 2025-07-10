@@ -1,33 +1,17 @@
 import React from 'react';
 import './index.css'
-import Header from './components/Header';
-import CategoryCard from './components/CategoryCard';
-import Footer  from './components/Footer';
-import { categoriesList } from './utils/constants';
-import Slider from './components/Slider';
+import Home from './pages/Home';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 const App = () => {
-  const productsList = categoriesList.filter((category)=>category.type==="product");
   return(
-    <div className='app-container'>
-      <Header/>
-      <div className='px-[10px] max-w-[1350px] mx-auto'>
-        <div className='my-4'>
-          <Slider productsList={productsList} />
-        </div>
-        <h2 className='text-4xl font-bold'>Browse by category:</h2>
-        <div className='flex flex-wrap gap-5 my-5'>
-          {
-            categoriesList
-            .filter((category)=>category.type==="category")
-            .map((category) => {
-              return <CategoryCard key={category.id} category={category}/>
-            })
-          }
-        </div>
+     <Router>
+      <div className='app-container'>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
       </div>
-      <Footer/>
-    </div>
+    </Router>
   )
 };
 
