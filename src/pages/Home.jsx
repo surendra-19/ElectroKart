@@ -10,7 +10,6 @@ const Home = () => {
 
   return (
     <>
-      <Header />
       <div className='px-[10px] max-w-[1350px] mx-auto'>
         <div className='my-4'>
           <Slider productsList={productsList} />

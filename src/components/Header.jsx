@@ -5,6 +5,7 @@ import { IoSearchSharp } from "react-icons/io5";
 import Logo from '../utils/Logo';
 
 const Header = () => {
+    const navigate = window.location && window.location.pathname !== undefined ? (path) => window.location.pathname = path : null;
     return(
         <header className="flex justify-between px-24 py-3 sticky top-0 z-[999] bg-white shadow-[0_8px_10px_rgba(106,109,159,0.2)]">
             <Logo/>
@@ -20,7 +21,7 @@ const Header = () => {
             </div>
             <div className="flex gap-15 items-center">
                 <MdOutlineShoppingCart className="cursor-pointer" size={30}/>
-                <IoPersonSharp className="cursor-pointer" size={25}/>
+                <IoPersonSharp className="cursor-pointer" size={25} onClick={() => navigate && navigate('/login')}/>
             </div>
         </header>
     )
